@@ -6,7 +6,6 @@ use App\Models\Article;
 use App\Models\Banner;
 use App\Models\Companysetting;
 use App\Models\Kegiatan;
-use Illuminate\Support\Facades\DB;
 
 class HomepageController extends Controller
 {
@@ -16,9 +15,6 @@ class HomepageController extends Controller
         $companyProfile = Companysetting::first();
         $articlesCount = Article::count();
         $activitiesCount = Kegiatan::count();
-        $totalDonasiApproved = (int) DB::table('jurnal_kas')
-            ->where('status', 'approved')
-            ->sum('nominal');
-        return view('frontend.homepage.index', compact('companyProfile', 'totalDonasiApproved', 'banners', 'activitiesCount', 'articlesCount'));
+        return view('frontend.homepage.index', compact('companyProfile', 'banners', 'activitiesCount', 'articlesCount'));
     }
 }

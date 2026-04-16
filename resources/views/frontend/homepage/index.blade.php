@@ -71,36 +71,15 @@
             <div class="row">
                 <div class="col-lg-9 mx-auto py-3">
                     <div class="row">
-                        @php
-                        $total = $totalDonasiApproved ?? 0;
-                        $display = 'Rp ' . number_format($total, 0, ',', '.'); // keep numeric formatting (if used)
-                        @endphp
-
-                        <div class="col-md-4 position-relative">
+                        <div class="col-md-6 position-relative">
                             <div class="p-3 text-center">
-                                {{-- data-raw berisi angka mentah untuk JS --}}
-                                <h1 class="text-gradient text-dark"
-                                    style="font-size: 2rem; font-weight: 700; margin-bottom: 4px;">
-                                    <span id="state1" data-count="{{ $total }}" data-raw="{{ $total }}"
-                                        style="font-size: 2rem;">
-                                        {{ $display }}
-                                    </span>
-                                </h1>
-                                <h5 class="mt-3">Total Donasi / Dukungan</h5>
-                                <p class="text-sm font-weight-normal text-muted">
-                                    Terima kasih—dukungan Anda memperkuat aktivitas dakwah dan program sosial Dewan
-                                    Da’wah Risalah Islamiyyah.
-                                </p>
-                            </div>
-                            <hr class="vertical dark">
-                        </div>
-                        <div class="col-md-4 position-relative">
-                            <div class="p-3 text-center">
+                                {{--
                                 <h1 class="text-gradient text-dark">
-                                    <span id="state2" data-count="{{ $articlesCount }}" data-raw="{{ $articlesCount }}">
+                                    <span id="state1" data-count="{{ $articlesCount }}" data-raw="{{ $articlesCount }}">
                                         {{ $articlesCount }}
                                     </span>
                                 </h1>
+                                --}}
                                 <h5 class="mt-3">Artikel / Publikasi</h5>
                                 <p class="text-sm font-weight-normal">
                                     Terdapat publikasi dan materi dakwah yang membahas berbagai topik keagamaan dan
@@ -110,10 +89,12 @@
                             <hr class="vertical dark">
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="p-3 text-center">
-                                <h1 class="text-gradient text-dark" id="state3" data-count="{{ $activitiesCount }}"
+                                {{--
+                                <h1 class="text-gradient text-dark" id="state2" data-count="{{ $activitiesCount }}"
                                     data-raw="{{ $activitiesCount }}">{{ $activitiesCount }}</h1>
+                                --}}
                                 <h5 class="mt-3">Kegiatan</h5>
                                 <p class="text-sm font-weight-normal">Berbagai kegiatan pendidikan, tabligh, dan program
                                     pemberdayaan masyarakat.</p>
@@ -300,6 +281,7 @@
             });
         });
 </script>
+{{--
 <script>
     document.addEventListener('DOMContentLoaded', function() {
             const el = document.getElementById('state1');
@@ -349,4 +331,5 @@
             requestAnimationFrame(animate);
         });
 </script>
+--}}
 @endpush

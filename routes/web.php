@@ -19,10 +19,10 @@ Route::post('/events/{event}/register', [RegistrationController::class, 'store']
 
 
 
-Route::get('/donasi', [DonasiController::class, 'create'])->name('donasi.create');
-Route::post('/donasi', [DonasiController::class, 'store'])->name('donasi.store');
+// Route::get('/donasi', [DonasiController::class, 'create'])->name('donasi.create');
+// Route::post('/donasi', [DonasiController::class, 'store'])->name('donasi.store');
 Route::get('/donatur', [DonasiController::class, 'getdonatur'])->name('donatur.index')->middleware('auth');
-Route::get('/donasi/thankyou', [DonasiController::class, 'thankyou'])->name('donasi.thankyou');
+// Route::get('/donasi/thankyou', [DonasiController::class, 'thankyou'])->name('donasi.thankyou');
 
 
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
