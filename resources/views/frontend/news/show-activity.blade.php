@@ -2,6 +2,12 @@
 
 @push('css')
 <style>
+    .article-shell {
+        background: linear-gradient(180deg, #f6fbef 0%, #eef7e7 45%, #e4f1d8 100%);
+        border: 1px solid rgba(58, 110, 46, 0.14);
+        box-shadow: 0 18px 40px rgba(45, 90, 40, 0.12);
+    }
+
     .article-header {
         height: 60vh;
         background-size: cover;
@@ -30,14 +36,25 @@
         font-size: 0.9rem;
         color: #6c757d;
     }
+
+    .article-shell .article-content,
+    .article-shell .article-content p,
+    .article-shell .article-content li {
+        color: #46624c;
+    }
 </style>
 @endpush
 
 @section('content')
+@php
+    $activityBanner = filled($activity->foto) && file_exists(public_path('storage/' . ltrim($activity->foto, '/')))
+        ? asset('storage/' . $activity->foto)
+        : asset('assets_frontend/img/bg5.jpg');
+@endphp
 
 <!-- Header Activity -->
 <header class="header-2 position-relative overflow-hidden">
-    <div class="article-header" style="background-image: url('{{ asset('storage/' . $activity->foto) }}')">
+    <div class="article-header" style="background-image: url('{{ $activityBanner }}')">
         <span class="mask"></span>
         <div class="container h-100 d-flex align-items-center position-relative">
             <div class="row">
@@ -58,7 +75,7 @@
 </header>
 
 <!-- Konten Ativitys -->
-<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+<div class="card card-body blur shadow-blur article-shell mx-3 mx-md-4 mt-4 mt-md-5">
     <section class="py-5">
         <div class="container">
             <div class="row">

@@ -2,6 +2,12 @@
 
 @push('css')
 <style>
+    .news-shell {
+        background: linear-gradient(180deg, #f6fbef 0%, #eef7e7 45%, #e4f1d8 100%);
+        border: 1px solid rgba(58, 110, 46, 0.14);
+        box-shadow: 0 18px 40px rgba(45, 90, 40, 0.12);
+    }
+
     .news-card img {
         border-radius: 1rem;
         transition: transform 0.3s ease;
@@ -13,6 +19,12 @@
 
     .news-card .card-body {
         text-align: justify;
+    }
+
+    .news-card {
+        border: 1px solid rgba(74, 122, 57, 0.14);
+        box-shadow: 0 16px 30px rgba(41, 90, 40, 0.1);
+        background: rgba(255, 255, 255, 0.72);
     }
 
     .news-header {
@@ -60,9 +72,14 @@
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-inner mb-4">
                 @foreach ($banners as $banner)
+                @php
+                    $newsBanner = filled($banner->foto) && file_exists(public_path('storage/' . ltrim($banner->foto, '/')))
+                        ? asset('storage/' . $banner->foto)
+                        : asset('assets_frontend/img/bg5.jpg');
+                @endphp
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                     <div class="page-header min-vh-75"
-                        style="background-image: url('{{ asset('storage/' . $banner->foto) }}');">
+                        style="background-image: url('{{ $newsBanner }}');">
                         <span class="mask bg-gradient-dark"></span>
                         <div class="container">
                             <div class="row">
@@ -109,36 +126,41 @@
 </header>
 
 <!-- Konten Berita -->
-<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+<div class="card card-body blur shadow-blur news-shell mx-3 mx-md-4 mt-4 mt-md-5">
     <section class="py-5">
         <div class="container">
             <div class="row mb-5 text-center">
                 <div class="col-lg-8 mx-auto">
-                    <h2 class="text-dark fw-bold mb-3">Artikel & Berita Terbaru</h2>
-                    <p class="text-muted p-horizontal">Temukan berita, artikel, dan informasi menarik seputar kegiatan
+                    <h2 class="fw-bold mb-3" style="color: #234f2a;">Artikel & Berita Terbaru</h2>
+                    <p class="p-horizontal" style="color: #46624c;">Temukan berita, artikel, dan informasi menarik seputar kegiatan
                         dakwah, program pendidikan, serta inisiatif sosial yang dilaksanakan oleh Dewan Da’wah Risalah
                         Islamiyyah di Sulit Air.</p>
                 </div>
             </div>
             <div class="row g-4 mb-4">
                 @foreach ($articles as $article)
+                @php
+                    $articleCardImage = filled($article->banner) && file_exists(public_path('storage/' . ltrim($article->banner, '/')))
+                        ? asset('storage/' . $article->banner)
+                        : asset('assets_frontend/img/bg-landing.jpg');
+                @endphp
                 <!-- Kartu Berita -->
                 <div class="col-lg-4 col-md-6">
                     <div class="card news-card shadow-sm h-100">
                         <a href="{{ route('article.show', $article->slug) }}">
-                            <img src="{{ asset('storage/' . $article->banner) }}" class="card-img-top"
+                            <img src="{{ $articleCardImage }}" class="card-img-top"
                                 alt="{{ $article->title }}">
                         </a>
                         <div class="card-body">
                             <h5 class="fw-bold">{{ $article->title }}</h5>
-                            <p class="text-muted small mb-2"><i class="far fa-calendar me-1"></i>
+                            <p class="small mb-2" style="color: #46624c;"><i class="far fa-calendar me-1"></i>
                                 @if ($article->published_at)
                                 {{ $article->published_at->translatedFormat('d F Y') }}
                                 @else
                                 Tidak ada tanggal
                                 @endif
                             </p>
-                            <p class="text-secondary">
+                            <p style="color: #46624c;">
                                 {{ Str::limit(strip_tags($article->content), 100, '...') }}
                             </p>
                             <a href="{{ route('article.show', $article->slug) }}"

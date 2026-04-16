@@ -36,15 +36,87 @@
     <link id="pagestyle" href="{{ asset('assets_frontend/css/material-kit.css?v=3.1.0') }}" rel="stylesheet" />
     @stack('css')
     <style>
+        .frontend-navbar {
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(58, 110, 46, 0.14);
+            box-shadow: 0 18px 36px rgba(39, 88, 38, 0.12);
+            backdrop-filter: blur(18px);
+        }
+
+        .frontend-navbar .material-symbols-rounded,
+        .frontend-navbar .icon {
+            color: #2f7a3d !important;
+        }
+
+        .frontend-navbar .navbar-brand,
+        .frontend-navbar .nav-link,
+        .frontend-navbar .dropdown-header,
+        .frontend-navbar .dropdown-item {
+            color: #1f5c31 !important;
+        }
+
+        .frontend-navbar .nav-link,
+        .frontend-navbar .dropdown-item {
+            transition: color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .frontend-navbar .nav-link:hover,
+        .frontend-navbar .dropdown-item:hover,
+        .frontend-navbar .dropdown-item:focus {
+            color: #2f7a3d !important;
+            background: rgba(226, 242, 217, 0.75);
+        }
+
+        .frontend-navbar .dropdown-menu {
+            background: rgba(252, 255, 249, 0.96);
+            border: 1px solid rgba(58, 110, 46, 0.14);
+            box-shadow: 0 18px 36px rgba(39, 88, 38, 0.12);
+        }
+
+        .frontend-navbar .arrow {
+            filter: brightness(0) saturate(100%) invert(26%) sepia(25%) saturate(969%) hue-rotate(78deg) brightness(93%) contrast(88%);
+        }
+
+        .frontend-navbar .navbar-toggler-bar {
+            background: #2f7a3d;
+        }
+
         .nav-link.active,
         .dropdown-item.active {
-            color: #007bff !important;
+            color: #2f7a3d !important;
             font-weight: bold;
         }
 
         .nav-link.active i,
         .dropdown-item.active i {
-            color: #007bff !important;
+            color: #2f7a3d !important;
+        }
+
+        @media (max-width: 991.98px) {
+            .frontend-navbar .navbar-collapse {
+                margin-top: 0.75rem;
+                padding: 1rem;
+                border-radius: 1rem;
+                background: rgba(248, 252, 242, 0.98);
+                border: 1px solid rgba(58, 110, 46, 0.14);
+                box-shadow: 0 16px 32px rgba(39, 88, 38, 0.12);
+            }
+
+            .frontend-navbar .navbar-nav .nav-link,
+            .frontend-navbar .navbar-nav .dropdown-item,
+            .frontend-navbar .navbar-nav a,
+            .frontend-navbar .dropdown-header {
+                color: #1f5c31 !important;
+            }
+
+            .frontend-navbar .d-lg-none .d-flex {
+                padding: 0.5rem 0.25rem;
+                border-bottom: 1px solid rgba(79, 124, 65, 0.12);
+            }
+
+            .frontend-navbar .d-lg-none .d-flex:last-child {
+                border-bottom: 0;
+            }
         }
     </style>
 </head>
@@ -55,11 +127,16 @@
         <div class="row">
             <div class="col-12">
                 <nav
-                    class="navbar navbar-expand-lg  blur border-radius-lg mt-4 top-0 z-index-3 shadow position-absolute my-3 p-2 start-0 end-0 mx-4">
+                    class="navbar navbar-expand-lg blur border-radius-lg mt-4 top-0 z-index-3 shadow position-absolute my-3 p-2 start-0 end-0 mx-4 frontend-navbar">
                     <div class="container-fluid px-0">
+                        @php
+                            $companyLogo = filled($companyProfile->logo) && file_exists(public_path('storage/' . ltrim($companyProfile->logo, '/')))
+                                ? asset('storage/' . $companyProfile->logo)
+                                : asset('assets_frontend/img/logo.jpg');
+                        @endphp
                         <a class="navbar-brand font-weight-bolder ms-sm-3 text-sm" href="/homepage" rel="tooltip"
                             title="Designed and Coded by Creative Tim" data-placement="bottom">
-                            <img src="{{ asset('storage/' . $companyProfile->logo) }}" width="40px" alt="" srcset="">
+                            <img src="{{ $companyLogo }}" width="40px" alt="Logo organisasi" srcset="">
                             {{ $companyProfile->nama_organisasi }}
                         </a>
                         <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
@@ -286,7 +363,7 @@
                                                     </div>
                                                     <div
                                                         class="w-100 d-flex align-items-center justify-content-between">
-                                                        <a href="#">
+                                                        <a href="/profile">
                                                             <div>
                                                                 <h6
                                                                     class="dropdown-header d-flex justify-content-cente align-items-center p-0">

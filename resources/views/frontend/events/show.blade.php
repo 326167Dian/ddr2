@@ -1,14 +1,40 @@
 @extends('frontend.layouts.app')
 
+@push('css')
+<style>
+    .seminar-detail-shell {
+        background: linear-gradient(180deg, #f6fbef 0%, #eef7e7 45%, #e4f1d8 100%);
+        border: 1px solid rgba(58, 110, 46, 0.14);
+        box-shadow: 0 18px 40px rgba(45, 90, 40, 0.12);
+    }
+
+    .seminar-detail-shell .card {
+        border: 1px solid rgba(74, 122, 57, 0.14);
+        box-shadow: 0 18px 36px rgba(41, 90, 40, 0.12);
+        background: rgba(255, 255, 255, 0.78);
+    }
+
+    .seminar-detail-shell p,
+    .seminar-detail-shell li {
+        color: #46624c;
+    }
+</style>
+@endpush
+
 @section('content')
-<section class="py-6">
+@php
+    $seminarBanner = filled($seminar->banner) && file_exists(public_path('storage/' . ltrim($seminar->banner, '/')))
+        ? asset('storage/' . $seminar->banner)
+        : asset('assets_frontend/img/bg-landing.jpg');
+@endphp
+<section class="py-6 seminar-detail-shell">
     <div class="container py-5">
         <div class="col-lg-8 mx-auto">
             <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
 
                 {{-- Banner Seminar --}}
                 @if ($seminar->banner)
-                <img src="{{ asset('storage/' . $seminar->banner) }}" alt="{{ $seminar->title }}" class="card-img-top"
+                <img src="{{ $seminarBanner }}" alt="{{ $seminar->title }}" class="card-img-top"
                     style="max-height: 350px; object-fit: cover;">
                 @endif
 

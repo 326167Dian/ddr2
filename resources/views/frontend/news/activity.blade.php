@@ -1,6 +1,24 @@
 @extends('frontend.layouts.app')
 @push('css')
 <style>
+    .activity-shell {
+        background: linear-gradient(180deg, #f6fbef 0%, #eef7e7 45%, #e4f1d8 100%);
+        border: 1px solid rgba(58, 110, 46, 0.14);
+        box-shadow: 0 18px 40px rgba(45, 90, 40, 0.12);
+    }
+
+    .activity-section-title {
+        color: #234f2a;
+    }
+
+    .activity-section-text {
+        color: #46624c;
+    }
+
+    .activity-shell .card-rotate {
+        box-shadow: 0 18px 36px rgba(41, 90, 40, 0.14);
+    }
+
     @media (max-width: 767.98px) {
         .p-horizontal {
             text-align: justify;
@@ -15,9 +33,14 @@
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-inner mb-4">
                 @foreach ($banners as $banner)
+                @php
+                    $activityBanner = filled($banner->foto) && file_exists(public_path('storage/' . ltrim($banner->foto, '/')))
+                        ? asset('storage/' . $banner->foto)
+                        : asset('assets_frontend/img/bg5.jpg');
+                @endphp
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                     <div class="page-header min-vh-75"
-                        style="background-image: url('{{ asset('storage/' . $banner->foto) }}');">
+                        style="background-image: url('{{ $activityBanner }}');">
                         <span class="mask bg-gradient-dark"></span>
                         <div class="container">
                             <div class="row">
@@ -63,14 +86,14 @@
     </div>
 </header>
 
-<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+<div class="card card-body blur shadow-blur activity-shell mx-3 mx-md-4 mt-4 mt-md-5">
     <section class="my-4 py-4">
         <div class="container">
             <div class="row align-items-center">
                 <div class="row justify-content-center text-center ms-auto me-auto">
                     <div class="col-lg-10">
-                        <h2 class="text-dark mb-0">Kegiatan Kami</h2>
-                        <p class="text-muted mt-3 p-horizontal">Dewan Da’wah Risalah Islamiyyah aktif menyelenggarakan
+                        <h2 class="activity-section-title mb-0">Kegiatan Kami</h2>
+                        <p class="activity-section-text mt-3 p-horizontal">Dewan Da’wah Risalah Islamiyyah aktif menyelenggarakan
                             berbagai program dakwah, pendidikan, pelatihan kader, dan aksi sosial untuk meningkatkan
                             kesejahteraan masyarakat Sulit Air.</p>
                     </div>
@@ -80,6 +103,11 @@
         <div class="container">
             <div class="row align-items-center mt-3">
                 @foreach ($activities as $activity)
+                @php
+                    $activityImage = filled($activity->foto) && file_exists(public_path('storage/' . ltrim($activity->foto, '/')))
+                        ? asset('storage/' . $activity->foto)
+                        : asset('assets_frontend/img/bg-landing.jpg');
+                @endphp
                 <div class="col-lg-4 ms-auto me-auto p-lg-4 mt-lg-0 mt-4">
                     <div class="rotating-card-container">
                         <div
@@ -98,7 +126,7 @@
                                 </div>
                             </div>
                             <div class="back back-background" style="
-                                background-image: url('{{ asset('storage/' . $activity->foto) }}');
+                                background-image: url('{{ $activityImage }}');
                                 background-repeat: no-repeat; 
                                 background-position: center; 
                                 background-size: cover; 
@@ -134,7 +162,7 @@
                         </li>
                         @else
                         <li class="page-item">
-                            <a class="page-link" href="{{ $articles->previousPageUrl() }}" rel="prev">&lt;</a>
+                            <a class="page-link" href="{{ $activities->previousPageUrl() }}" rel="prev">&lt;</a>
                         </li>
                         @endif
 

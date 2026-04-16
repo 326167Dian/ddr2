@@ -1,7 +1,131 @@
 @extends('frontend.layouts.app')
 @push('css')
 <style>
+    .navbar .btn.bg-gradient-success,
+    .homepage-shell .btn.bg-gradient-success,
+    .homepage-shell .btn-success {
+        background: linear-gradient(135deg, #2d7a3d 0%, #4ca95b 100%);
+        border: none;
+        box-shadow: 0 12px 24px rgba(45, 122, 61, 0.24);
+    }
+
+    .navbar .btn.bg-gradient-success:hover,
+    .homepage-shell .btn.bg-gradient-success:hover,
+    .homepage-shell .btn-success:hover {
+        background: linear-gradient(135deg, #256633 0%, #3f944e 100%);
+        box-shadow: 0 14px 28px rgba(37, 102, 51, 0.28);
+    }
+
+    .homepage-shell {
+        background: linear-gradient(180deg, #f6fbef 0%, #eef7e7 45%, #e5f2dc 100%);
+        border: 1px solid rgba(58, 110, 46, 0.14);
+        box-shadow: 0 18px 40px rgba(45, 90, 40, 0.12);
+    }
+
+    .hero-banner {
+        width: 100%;
+    }
+
+    .hero-banner img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .stats-panel,
+    .info-panel,
+    .leadership-panel,
+    .partnership-panel,
+    .value-card {
+        border-radius: 24px;
+    }
+
+    .stats-panel {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(223, 242, 210, 0.88));
+        border: 1px solid rgba(83, 131, 65, 0.14);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .info-panel,
+    .partnership-panel,
+    .value-card {
+        background: rgba(255, 255, 255, 0.58);
+        border: 1px solid rgba(83, 131, 65, 0.14);
+        box-shadow: 0 10px 24px rgba(55, 100, 46, 0.08);
+    }
+
+    .homepage-shell .card,
+    .homepage-shell .info-panel,
+    .homepage-shell .value-card,
+    .homepage-shell .content-illustration,
+    .homepage-shell .partnership-panel {
+        border: 1px solid rgba(74, 122, 57, 0.16);
+        box-shadow: 0 18px 36px rgba(41, 90, 40, 0.12);
+    }
+
+    .leadership-panel {
+        background: linear-gradient(180deg, rgba(248, 252, 242, 0.94), rgba(228, 243, 217, 0.92));
+        border: 1px solid rgba(83, 131, 65, 0.14);
+    }
+
+    .section-title-green {
+        color: #1f5c31;
+    }
+
+    .section-text-green,
+    .homepage-shell p,
+    .homepage-shell .small,
+    .homepage-shell .text-sm {
+        color: #46624c;
+    }
+
+    .homepage-shell h2,
+    .homepage-shell h5,
+    .homepage-shell h6 {
+        color: #234f2a;
+    }
+
+    .homepage-shell .material-symbols-rounded.text-success,
+    .homepage-shell .material-symbols-rounded.text-gradient.text-success {
+        color: #2e7d32 !important;
+        text-shadow: 0 8px 18px rgba(46, 125, 50, 0.18);
+    }
+
+    .homepage-shell .vertical.dark {
+        background-image: linear-gradient(180deg, rgba(80, 125, 63, 0), rgba(80, 125, 63, 0.7), rgba(80, 125, 63, 0));
+        opacity: 1;
+    }
+
+    .content-illustration {
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid rgba(83, 131, 65, 0.16);
+        box-shadow: 0 16px 32px rgba(55, 100, 46, 0.14);
+        background: rgba(255, 255, 255, 0.72);
+    }
+
+    .content-illustration img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 280px;
+        object-fit: cover;
+    }
+
+    .partnership-image {
+        border-radius: 20px;
+        box-shadow: 0 12px 24px rgba(55, 100, 46, 0.12);
+    }
+
     @media (max-width: 767.98px) {
+        .homepage-shell {
+            border-radius: 24px;
+        }
+
+        .content-illustration img {
+            min-height: 220px;
+        }
+
         .p-horizontal {
             text-align: justify;
         }
@@ -10,65 +134,17 @@
 @endpush
 @section('content')
 <header class="header-2 position-relative overflow-hidden">
-    <div id="hero-slider" class="position-relative" style="height: 75vh; overflow: hidden;">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-            <div class="carousel-inner mb-4">
-                @foreach ($banners as $banner)
-                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                    <div class="page-header min-vh-75"
-                        style="background-image: url('{{ asset('storage/' . $banner->foto) }}');">
-                        <!--mask dihilangkan-->
-                        <!--<span class="mask bg-gradient-dark"></span>-->
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-6 my-auto">
-                                    <h1 class="text-white fadeIn2 fadeInBottom">{{ $banner->judul }}</h1>
-                                    <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">
-                                        <strong>{{ $banner->deskripsi }}</strong>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-
-            <!-- Tombol navigasi -->
-            <div class="min-vh-75 position-absolute w-100 top-0">
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon position-absolute bottom-50" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon position-absolute bottom-50" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Titik indikator -->
-        @if($banners->count())
-        <div id="hero-dots" class="position-absolute start-50 translate-middle-x d-flex gap-2" style="bottom: 90px;">
-
-            @foreach ($banners as $index => $banner)
-            <span class="dot rounded-circle bg-white {{ $index === 0 ? 'opacity-100' : 'opacity-50' }}"
-                style="width:10px;height:10px;cursor:pointer;" data-slide="{{ $index }}">
-            </span>
-            @endforeach
-
-        </div>
-        @endif
-
+    <div class="hero-banner">
+        <img src="{{ asset('assets_frontend/img/lebaran.png') }}" alt="Banner Lebaran Dewan Dakwah Risalah">
     </div>
 </header>
 
 
-<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+<div class="card card-body blur shadow-blur homepage-shell mx-3 mx-md-4 mt-4 mt-md-5">
 
     <section class="pt-3 pb-4" id="count-stats">
         <div class="container">
-            <div class="row">
+            <div class="row stats-panel py-4">
                 <div class="col-lg-9 mx-auto py-3">
                     <div class="row">
                         <div class="col-md-6 position-relative">
@@ -110,7 +186,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7 col-12 my-auto">
-                    <div class="info-horizontal border-radius-xl d-block d-md-flex p-4 h-100">
+                    <div class="info-horizontal info-panel border-radius-xl d-block d-md-flex p-4 h-100">
                         <div class="ps-0 ps-md-3 mt-3 mt-md-0">
                             <h5>Dakwah Dewan Risalah</h5>
                             <p class="p-horizontal">Dewan Da’wah Risalah Islamiyyah aktif menyelenggarakan kegiatan
@@ -121,21 +197,20 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-12 my-auto">
-                    <a href="#">
-                        <img class="w-100 border-radius-lg shadow-lg" src="{{ asset('assets_frontend/img/masjidgontor.jpg') }}"
-                            alt="Dakwah Image">
-                    </a>
+                    <div class="content-illustration">
+                        <img src="{{ asset('assets_frontend/img/masjidsulitair.jpg') }}" alt="Masjid Sulit Air">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="my-5 py-5">
+    <section class="my-5 py-5 leadership-panel">
         <div class="container">
             <div class="row justify-content-center text-center ms-auto me-auto">
                 <div class="col-lg-10 mb-5">
-                    <h2 class="text-dark mb-0">PENGURUS DEWAN DAKWAH RISALAH</h2>
-                    <p class="text-muted mt-3 p-horizontal">
+                    <h2 class="section-title-green mb-0">PENGURUS DEWAN DAKWAH RISALAH</h2>
+                    <p class="section-text-green mt-3 p-horizontal">
                         Sosok yang menjadi panutan dan penggerak utama organisasi. Dengan visi yang jelas dan semangat
                         pengabdian tinggi, beliau memimpin Dewan Da’wah Risalah Islamiyyah untuk mewujudkan tujuan
                         dakwah dan pemberdayaan masyarakat.
@@ -160,7 +235,7 @@
                                 </div>
                             </div>
                             <div class="back back-background"
-                                style="background-image: url('{{ asset('assets_frontend/img/fotoketua.png') }}'); background-size: cover;">
+                                style="background-image: url('{{ asset('assets_frontend/img/ketua.jpg') }}'); background-size: cover;">
                                 <div class="card-body pt-7 text-center">
                                     <h3 class="text-white">Tentang Pemimpin Kami</h3>
                                     <p class="text-white opacity-8" style="text-align: justify;">
@@ -179,7 +254,7 @@
                 <div class="col-lg-6 ms-auto">
                     <div class="row justify-content-start">
                         <div class="col-md-6">
-                            <div class="info">
+                            <div class="info value-card p-4 h-100">
                                 <i class="material-symbols-rounded text-gradient text-success text-3xl">groups</i>
                                 <h5 class="font-weight-bolder mt-3">Kaderisasi & Pendidikan</h5>
                                 <p class="pe-5" style="text-align: justify;">Membangun kapasitas da’i dan anggota
@@ -187,7 +262,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="info">
+                            <div class="info value-card p-4 h-100">
                                 <i class="material-symbols-rounded text-gradient text-success text-3xl">verified</i>
                                 <h5 class="font-weight-bolder mt-3">Amanah & Integritas</h5>
                                 <p class="pe-3" style="text-align: justify;">Menjunjung tinggi kejujuran, tanggung
@@ -197,13 +272,15 @@
                     </div>
                     <div class="row justify-content-start mt-5">
                         <div class="col-md-6 mt-3">
-                            <i class="material-symbols-rounded text-gradient text-success text-3xl">lightbulb</i>
-                            <h5 class="font-weight-bolder mt-3">Inovasi Dakwah</h5>
-                            <p class="pe-5" style="text-align: justify;">Mengembangkan konsep dan metode dakwah yang
-                                relevan dengan tantangan masa kini.</p>
+                            <div class="info value-card p-4 h-100">
+                                <i class="material-symbols-rounded text-gradient text-success text-3xl">lightbulb</i>
+                                <h5 class="font-weight-bolder mt-3">Inovasi Dakwah</h5>
+                                <p class="pe-5" style="text-align: justify;">Mengembangkan konsep dan metode dakwah yang
+                                    relevan dengan tantangan masa kini.</p>
+                            </div>
                         </div>
                         <div class="col-md-6 mt-3">
-                            <div class="info">
+                            <div class="info value-card p-4 h-100">
                                 <i class="material-symbols-rounded text-gradient text-success text-3xl">handshake</i>
                                 <h5 class="font-weight-bolder mt-3">Kemitraan</h5>
                                 <p class="pe-3" style="text-align: justify;">Membangun sinergi dengan lembaga
@@ -218,13 +295,13 @@
 
     {{-- KEMITRAAN ORGANISASI --}}
     
-    <section class="py-6">
+    <section class="py-6 partnership-panel">
         <div class="container text-center">
-            <h2 class="fw-bold mb-4">Kemitraan</h2>
+            <h2 class="fw-bold mb-4 section-title-green">Kemitraan</h2>
                 <div class="col-12 p-0">
-                    <img src="{{ asset('assets_frontend/img/kemitraan.png') }}" alt="Dakwah Image" class="img-fluid w-100">
+                    <img src="{{ asset('assets_frontend/img/bg-landing.jpg') }}" alt="Kemitraan Dewan Dakwah Risalah" class="img-fluid w-100 partnership-image">
                 </div>
-            <p class="text-muted mb-5 p-horizontal">Membangun sinergi dengan lembaga pemerintah, yayasan, dan komunitas
+            <p class="section-text-green mb-5 p-horizontal">Membangun sinergi dengan lembaga pemerintah, yayasan, dan komunitas
                 lokal.</p>
             <div class="row">
                 <div class="col-md-3 mb-4">
@@ -253,34 +330,6 @@
     </section>
 </div>
 @endsection
-
-@push('scripts')
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-            const carousel = document.querySelector('#carouselExampleControls');
-            const dots = document.querySelectorAll('#hero-dots .dot');
-
-            // Aktifkan carousel otomatis
-            const bsCarousel = new bootstrap.Carousel(carousel, {
-                interval: 4000,
-                ride: 'carousel',
-                pause: false, // biar tidak berhenti saat mouse hover
-                wrap: true // biar berputar terus
-            });
-
-            // Update titik saat slide berubah
-            carousel.addEventListener('slide.bs.carousel', function(event) {
-                dots.forEach((dot, i) => {
-                    dot.style.opacity = i === event.to ? "1" : "0.5";
-                });
-            });
-
-            // Klik titik untuk pindah slide
-            dots.forEach((dot, i) => {
-                dot.addEventListener('click', () => bsCarousel.to(i));
-            });
-        });
-</script>
 {{--
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -332,4 +381,3 @@
         });
 </script>
 --}}
-@endpush

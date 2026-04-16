@@ -28,11 +28,14 @@
         @php
         $registrationsCount = $event->registrations->count();
         $isFull = $registrationsCount >= $event->quota;
+        $eventBanner = filled($event->banner) && file_exists(public_path('storage/' . ltrim($event->banner, '/')))
+            ? asset('storage/' . $event->banner)
+            : asset('assets_frontend/img/bg-landing.jpg');
         @endphp
         <div class="col-md-4 col-sm-6">
             <div class="card shadow-sm border-0 h-100 event-card rounded-4 overflow-hidden">
                 @if ($event->banner)
-                <img src="{{ asset('storage/' . $event->banner) }}" class="card-img-top" alt="{{ $event->title }}"
+                <img src="{{ $eventBanner }}" class="card-img-top" alt="{{ $event->title }}"
                     style="height: 220px; object-fit: cover;">
                 @else
                 <div class="bg-light d-flex justify-content-center align-items-center" style="height: 220px;">

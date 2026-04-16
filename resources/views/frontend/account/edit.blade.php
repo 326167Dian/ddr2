@@ -27,6 +27,11 @@
 @endpush
 
 @section('content')
+@php
+    $profilePhoto = filled($profile->foto) && file_exists(public_path('storage/' . ltrim($profile->foto, '/')))
+        ? asset('storage/' . $profile->foto)
+        : asset('assets_frontend/img/bruce-mars.jpg');
+@endphp
 <div class="container py-7 mt-8">
     <div class="card profile-card border-0 shadow-sm p-4 rounded">
         <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
@@ -36,9 +41,7 @@
             <div class="row align-items-start">
                 <!-- Foto profil kiri -->
                 <div class="col-md-4 text-center mb-4 mb-md-0">
-                    <img src="{{ $profile->foto 
-                            ? asset('storage/' . $profile->foto) 
-                            : asset('assets_frontend/img/bruce-mars.jpg') }}" class="profile-img shadow-sm mb-3"
+                    <img src="{{ $profilePhoto }}" class="profile-img shadow-sm mb-3"
                         alt="Profile">
 
                     <div class="input-group input-group-outline my-3">

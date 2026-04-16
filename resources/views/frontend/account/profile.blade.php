@@ -71,14 +71,17 @@
 @endpush
 
 @section('content')
+@php
+    $profilePhoto = filled($profile->foto) && file_exists(public_path('storage/' . ltrim($profile->foto, '/')))
+        ? asset('storage/' . $profile->foto)
+        : asset('assets_frontend/img/bruce-mars.jpg');
+@endphp
 <div class="container py-7 mt-8">
     <div class="card profile-card border-0 shadow-sm p-4 rounded">
         <div class="row align-items-center">
             <!-- Foto profil kiri -->
             <div class="col-md-4 text-center mb-4 mb-md-0">
-                <img src="{{ $profile->foto 
-                            ? asset('storage/' . $profile->foto) 
-                            : asset('assets_frontend/img/bruce-mars.jpg') }}" alt="Profile"
+                <img src="{{ $profilePhoto }}" alt="Profile"
                     class="profile-img shadow-sm">
             </div>
 

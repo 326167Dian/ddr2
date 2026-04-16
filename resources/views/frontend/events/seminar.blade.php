@@ -2,8 +2,17 @@
 
 @push('css')
 <style>
+    .seminar-shell {
+        background: linear-gradient(180deg, #f6fbef 0%, #eef7e7 45%, #e4f1d8 100%);
+        border: 1px solid rgba(58, 110, 46, 0.14);
+        box-shadow: 0 18px 40px rgba(45, 90, 40, 0.12);
+    }
+
     .seminar-card {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(74, 122, 57, 0.14);
+        box-shadow: 0 16px 30px rgba(41, 90, 40, 0.1);
+        background: rgba(255, 255, 255, 0.72);
     }
 
     .seminar-card:hover {
@@ -25,9 +34,14 @@
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-inner mb-4">
                 @foreach ($banners as $banner)
+                @php
+                    $seminarHero = filled($banner->foto) && file_exists(public_path('storage/' . ltrim($banner->foto, '/')))
+                        ? asset('storage/' . $banner->foto)
+                        : asset('assets_frontend/img/bg5.jpg');
+                @endphp
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                     <div class="page-header min-vh-75"
-                        style="background-image: url('{{ asset('storage/' . $banner->foto) }}');">
+                        style="background-image: url('{{ $seminarHero }}');">
                         <span class="mask bg-gradient-dark"></span>
                         <div class="container">
                             <div class="row">
@@ -73,14 +87,14 @@
     </div>
 </header>
 
-<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+<div class="card card-body blur shadow-blur seminar-shell mx-3 mx-md-4 mt-4 mt-md-5">
 
     <section class="py-5">
         <div class="container">
             <div class="row justify-content-center text-center mb-5">
                 <div class="col-lg-8">
-                    <h2 class="text-dark mb-0 fw-bold">Seminar & Pelatihan Terkini</h2>
-                    <p class="text-muted mt-3 p-horizontal">
+                    <h2 class="mb-0 fw-bold" style="color: #234f2a;">Seminar & Pelatihan Terkini</h2>
+                    <p class="mt-3 p-horizontal" style="color: #46624c;">
                         Tingkatkan kompetensi dan pengetahuan Anda dengan mengikuti seminar, pelatihan, dan workshop
                         terbaru yang kami selenggarakan di berbagai daerah di Indonesia.
                     </p>
@@ -89,10 +103,15 @@
             <div class="row">
                 <!-- Contoh 1 -->
                 @foreach ($seminars as $seminar)
+                @php
+                    $seminarBanner = filled($seminar->banner) && file_exists(public_path('storage/' . ltrim($seminar->banner, '/')))
+                        ? asset('storage/' . $seminar->banner)
+                        : asset('assets_frontend/img/bg-landing.jpg');
+                @endphp
                 <div class="col-lg-4 col-md-6 mb-5">
                     <div class="card seminar-card border-0 shadow-sm h-100">
                         @if ($seminar->banner)
-                        <img src="{{ asset('storage/' . $seminar->banner) }}" class="card-img-top"
+                        <img src="{{ $seminarBanner }}" class="card-img-top"
                             alt="{{ $seminar->title }}" style="height: 220px; object-fit: cover;">
                         @else
                         <div class="bg-light d-flex justify-content-center align-items-center" style="height: 220px;">
@@ -101,7 +120,7 @@
                         @endif
                         <div class="card-body">
                             <h5 class="fw-bold text-dark">{{ $seminar->title }}</h5>
-                            <p class="text-muted mb-3">
+                            <p class="mb-3" style="color: #46624c;">
                                 Pendaftararan mulai :<br> {{ \Carbon\Carbon::parse($seminar->start_at)->format('d M
                                 Y,
                                 H:i')
@@ -110,7 +129,7 @@
                                 \Carbon\Carbon::parse($seminar->end_at)->format('d M Y, H:i') }} — {{ $seminar->location
                                 }}
                             </p>
-                            <p class="text-sm p-horizontal">
+                            <p class="text-sm p-horizontal" style="color: #46624c;">
                                 {!! Str::limit($seminar->description, 90) !!}
                             </p>
                         </div>
@@ -123,7 +142,7 @@
                         </div>
                         @else
                         <div class="card-footer bg-transparent border-0 text-center">
-                            <a href="{{ route('seminar.show', $seminar->id) }}" class="btn bg-gradient-info btn-sm">
+                            <a href="{{ route('seminar.show', $seminar->id) }}" class="btn bg-gradient-success btn-sm text-white">
                                 Daftar Seminar
                             </a>
                         </div>
