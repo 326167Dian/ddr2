@@ -1,0 +1,102 @@
+<?php
+
+namespace App\Filament\Resources\Registrations\Tables;
+
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Filament\Actions\BulkAction;
+use Illuminate\Support\Collection;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\BadgeColumn;
+
+class RegistrationsTable
+{
+    public static function configure(Table $table): Table
+    {
+        return $table
+            ->columns([
+                TextColumn::make('id')
+                    ->sortable()
+                    ->searchable(),
+
+                TextColumn::make('user.email')
+                    ->label('User')
+                    ->sortable()
+                    ->searchable(),
+
+                TextColumn::make('phone')
+                    ->label('No. Telepon')
+                    ->searchable()
+                    ->url(fn($record) => 'https://api.whatsapp.com/send?phone=' . preg_replace('/^0/', '62', preg_replace('/[^0-9]/', '', $record->phone)))
+                    ->openUrlInNewTab(),
+
+                TextColumn::make('event.title')
+                    ->label('Event')
+                    ->sortable()
+                    ->searchable(),
+
+                TextColumn::make('fullname')
+                    ->label('Full Name')
+                    ->sortable()
+                    ->searchable(),
+
+                TextColumn::make('email')
+                    ->label('Email')
+                    ->sortable()
+                    ->searchable(),
+
+                TextColumn::make('amount')
+                    ->label('Amount')
+                    ->money('idr')
+                    ->sortable(),
+
+                BadgeColumn::make('status')
+                    ->colors([
+                        'warning'   => 'waiting_approval',
+                        'success'   => 'approved',
+                        'danger'    => 'rejected',
+                    ])
+                    ->label('Status'),
+
+                TextColumn::make('created_at')
+                    ->label('Registered At')
+                    ->dateTime()
+                    ->sortable(),
+            ])
+            ->filters([
+                Tables\Filters\SelectFilter::make('status')
+                    ->options([
+                        'waiting_approval' => 'Waiting Approval',
+                        'approved'         => 'Approved',
+                        'rejected'         => 'Rejected',
+                    ]),
+                Tables\Filters\SelectFilter::make('event_id')
+                    ->relationship('event', 'title')
+                    ->label('Event'),
+            ])
+            ->recordActions([
+                ViewAction::make(),
+                EditAction::make(),
+            ])
+
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    BulkAction::make('approveSelected')
+                        ->label('Approve Selected')
+                        ->icon('heroicon-o-check-circle')
+                        ->color('success')
+                        ->action(function (Collection $records) {
+                            $records
+                                ->where('status', 'waiting_approval')
+                                ->each
+                                ->update(['status' => 'approved']);
+                        }),
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+}
