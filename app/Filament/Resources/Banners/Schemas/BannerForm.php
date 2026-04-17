@@ -16,20 +16,24 @@ class BannerForm
             ->components([
                 TextInput::make('judul')
                     ->label('Judul')
+                    ->helperText('Judul yang tampil di atas gambar banner.')
                     ->required()
                     ->maxLength(255),
                 Select::make('title')
-                    ->label('Title')
+                    ->label('Kategori Banner')
                     ->options([
-                        'banner struktur organisasi' => 'Banner Struktur Organisasi',
-                        'banner artikel & berita' => 'Banner artikel & berita',
-                        'banner kegiatan' => 'Banner kegiatan',
-                        'banner sejarah organisasi' => 'Banner sejarah organisasi',
-                        'banner seminar' => 'Banner seminar',
-                        'banner home' => 'Banner Home',
-                    ]),
+                        'banner struktur organisasi' => 'Halaman Struktur Organisasi',
+                        'banner artikel & berita' => 'Halaman Artikel & Berita',
+                        'banner kegiatan' => 'Halaman Kegiatan',
+                        'banner sejarah organisasi' => 'Halaman Sejarah Organisasi',
+                        'banner seminar' => 'Halaman Seminar',
+                        'banner home' => 'Halaman Home',
+                    ])
+                    ->helperText('Pilih halaman yang akan memakai banner ini.')
+                    ->required(),
                 Textarea::make('deskripsi')
                     ->label('Deskripsi')
+                    ->helperText('Teks pendukung yang tampil di bawah judul banner.')
                     ->required()
                     ->autosize()
                     ->columnSpanFull(),
@@ -39,9 +43,11 @@ class BannerForm
                         'active' => 'Aktif',
                         'inactive' => 'Tidak Aktif'
                     ])
+                    ->helperText('Hanya banner dengan status Aktif yang akan tampil di website.')
                     ->required(),
                 FileUpload::make('foto')
                     ->label('Foto')
+                    ->helperText('Upload gambar banner untuk halaman yang dipilih.')
                     ->image()
                     ->required()
                     ->disk('public')

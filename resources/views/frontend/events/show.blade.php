@@ -24,7 +24,7 @@
 @section('content')
 @php
     $seminarBanner = filled($seminar->banner) && file_exists(public_path('storage/' . ltrim($seminar->banner, '/')))
-        ? asset('storage/' . $seminar->banner)
+    ? '/storage/' . ltrim($seminar->banner, '/')
         : asset('assets_frontend/img/bg-landing.jpg');
 @endphp
 <section class="py-6 seminar-detail-shell">

@@ -48,7 +48,7 @@
 @section('content')
 @php
     $activityBanner = filled($activity->foto) && file_exists(public_path('storage/' . ltrim($activity->foto, '/')))
-        ? asset('storage/' . $activity->foto)
+    ? '/storage/' . ltrim($activity->foto, '/')
         : asset('assets_frontend/img/bg5.jpg');
 @endphp
 

@@ -2,6 +2,16 @@
 
 @push('css')
 <style>
+    .hero-banner {
+        width: 100%;
+    }
+
+    .hero-banner img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
     .news-shell {
         background: linear-gradient(180deg, #f6fbef 0%, #eef7e7 45%, #e4f1d8 100%);
         border: 1px solid rgba(58, 110, 46, 0.14);
@@ -66,62 +76,10 @@
 @endpush
 
 @section('content')
-<!-- Header -->
 <header class="header-2 position-relative overflow-hidden">
-    <div id="hero-slider" class="position-relative" style="height: 75vh; overflow: hidden;">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-            <div class="carousel-inner mb-4">
-                @foreach ($banners as $banner)
-                @php
-                    $newsBanner = filled($banner->foto) && file_exists(public_path('storage/' . ltrim($banner->foto, '/')))
-                        ? asset('storage/' . $banner->foto)
-                        : asset('assets_frontend/img/bg5.jpg');
-                @endphp
-                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                    <div class="page-header min-vh-75"
-                        style="background-image: url('{{ $newsBanner }}');">
-                        <span class="mask bg-gradient-dark"></span>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-6 my-auto">
-                                    <h1 class="text-white fadeIn2 fadeInBottom">{{ $banner->judul }}</h1>
-                                    <p class="lead text-white opacity-8 fadeIn3 fadeInBottom">
-                                        {{ $banner->deskripsi }}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-
-            <!-- Tombol navigasi -->
-            <div class="min-vh-75 position-absolute w-100 top-0">
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon position-absolute bottom-50" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon position-absolute bottom-50" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Titik indikator -->
-        @if($banners->count())
-        <div id="hero-dots" class="position-absolute start-50 translate-middle-x d-flex gap-2" style="bottom: 90px;">
-
-            @foreach ($banners as $index => $banner)
-            <span class="dot rounded-circle bg-white {{ $index === 0 ? 'opacity-100' : 'opacity-50' }}"
-                style="width:10px;height:10px;cursor:pointer;" data-slide="{{ $index }}">
-            </span>
-            @endforeach
-
-        </div>
-        @endif
-
+    {{-- Banner dinamis sementara dinonaktifkan. --}}
+    <div class="hero-banner">
+        <img src="{{ asset('assets_frontend/img/bg.jpg') }}" alt="Banner Berita">
     </div>
 </header>
 
@@ -141,7 +99,7 @@
                 @foreach ($articles as $article)
                 @php
                     $articleCardImage = filled($article->banner) && file_exists(public_path('storage/' . ltrim($article->banner, '/')))
-                        ? asset('storage/' . $article->banner)
+                        ? '/storage/' . ltrim($article->banner, '/')
                         : asset('assets_frontend/img/bg-landing.jpg');
                 @endphp
                 <!-- Kartu Berita -->

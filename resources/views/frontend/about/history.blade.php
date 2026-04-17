@@ -77,7 +77,7 @@
                 @foreach ($banners as $banner)
                 @php
                     $historyBanner = filled($banner->foto) && file_exists(public_path('storage/' . ltrim($banner->foto, '/')))
-                        ? asset('storage/' . $banner->foto)
+                        ? '/storage/' . ltrim($banner->foto, '/')
                         : asset('assets_frontend/img/bg5.jpg');
                 @endphp
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">

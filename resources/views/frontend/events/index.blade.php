@@ -29,7 +29,7 @@
         $registrationsCount = $event->registrations->count();
         $isFull = $registrationsCount >= $event->quota;
         $eventBanner = filled($event->banner) && file_exists(public_path('storage/' . ltrim($event->banner, '/')))
-            ? asset('storage/' . $event->banner)
+            ? '/storage/' . ltrim($event->banner, '/')
             : asset('assets_frontend/img/bg-landing.jpg');
         @endphp
         <div class="col-md-4 col-sm-6">

@@ -35,7 +35,7 @@
                 @foreach ($banners as $banner)
                 @php
                     $activityBanner = filled($banner->foto) && file_exists(public_path('storage/' . ltrim($banner->foto, '/')))
-                        ? asset('storage/' . $banner->foto)
+                        ? '/storage/' . ltrim($banner->foto, '/')
                         : asset('assets_frontend/img/bg5.jpg');
                 @endphp
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
@@ -105,7 +105,7 @@
                 @foreach ($activities as $activity)
                 @php
                     $activityImage = filled($activity->foto) && file_exists(public_path('storage/' . ltrim($activity->foto, '/')))
-                        ? asset('storage/' . $activity->foto)
+                        ? '/storage/' . ltrim($activity->foto, '/')
                         : asset('assets_frontend/img/bg-landing.jpg');
                 @endphp
                 <div class="col-lg-4 ms-auto me-auto p-lg-4 mt-lg-0 mt-4">

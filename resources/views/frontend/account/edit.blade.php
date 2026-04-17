@@ -29,7 +29,7 @@
 @section('content')
 @php
     $profilePhoto = filled($profile->foto) && file_exists(public_path('storage/' . ltrim($profile->foto, '/')))
-        ? asset('storage/' . $profile->foto)
+    ? '/storage/' . ltrim($profile->foto, '/')
         : asset('assets_frontend/img/bruce-mars.jpg');
 @endphp
 <div class="container py-7 mt-8">

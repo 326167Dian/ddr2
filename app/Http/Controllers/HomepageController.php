@@ -11,7 +11,7 @@ class HomepageController extends Controller
 {
     public function index()
     {
-        $banners = Banner::where('status', 'active')->where('title', 'Banner Home')->get();
+        $banners = Banner::where('status', 'active')->where('title', 'banner home')->get();
         $companyProfile = Companysetting::first();
         $articlesCount = Article::count();
         $activitiesCount = Kegiatan::count();

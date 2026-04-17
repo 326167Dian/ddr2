@@ -48,7 +48,7 @@
 @section('content')
 @php
     $articleBanner = filled($article->banner) && file_exists(public_path('storage/' . ltrim($article->banner, '/')))
-        ? asset('storage/' . $article->banner)
+    ? '/storage/' . ltrim($article->banner, '/')
         : asset('assets_frontend/img/bg5.jpg');
 @endphp
 

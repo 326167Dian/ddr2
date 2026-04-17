@@ -131,7 +131,7 @@
                     <div class="container-fluid px-0">
                         @php
                             $companyLogo = filled($companyProfile->logo) && file_exists(public_path('storage/' . ltrim($companyProfile->logo, '/')))
-                                ? asset('storage/' . $companyProfile->logo)
+                                ? '/storage/' . ltrim($companyProfile->logo, '/')
                                 : asset('assets_frontend/img/logo.jpg');
                         @endphp
                         <a class="navbar-brand font-weight-bolder ms-sm-3 text-sm" href="/homepage" rel="tooltip"
