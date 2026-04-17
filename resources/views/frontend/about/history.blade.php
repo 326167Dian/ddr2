@@ -353,7 +353,7 @@
             <h2 class="fw-bold mb-4 history-section-title">Artikulasi / Pemaknaan</h2>
             <p class="mb-5 p-horizontal">TERKEMUKA</p>
             <div class="col-12 p-0 history-meaning-card">
-                <img src="{{ asset('assets_frontend/img/city-profile.jpg') }}" class="img-fluid w-100 history-meaning-image">
+                <img src="{{ asset('assets_frontend/img/palingmaju.png') }}" class="img-fluid w-100 history-meaning-image">
             </div>
 
             <!--<div class="row">-->
