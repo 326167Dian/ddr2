@@ -150,22 +150,31 @@
                 <div class="col-md-4 mb-4">
                     <div class="card org-card p-4 h-100" style="background: rgba(255, 255, 255, 0.68);">
                         <i class="material-symbols-rounded text-success text-3xl mb-3">person</i>
-                        <h6 class="org-title">Prof. Dr. M. Amin Nurdin, MA</h6>
+                        <h6 class="org-title">Ketua: <br> Prof. Dr. M. Amin Nurdin, MA <br>
+                        Anggota : <br>
+                        Ir. Jusna JA. Nurdin, Ph.D<br>
+                        Budiarman Bahar
+                    </h6>
                         <p class="org-position">Dewan Pakar</p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card org-card text-white p-4 h-100" style="background: linear-gradient(135deg, #275626 0%, #3b7b3e 100%);">
                         <i class="material-symbols-rounded text-success text-3xl mb-3">person</i>
-                        <h6 class="org-title text-white">H. Fauzul Abrar, S.H. </h6>
                         <p class="org-position text-white">Sekretaris Umum</p>
+                        <h6 class="org-title text-white">H. Fauzul Abrar, S.H. </h6>
+                        <p class="org-position text-white">Kesekretariatan</p>
+                        <h6 class="org-title text-white">Dwindra Mahenza, SE <br>
+                                                           apt.Ahmad Nurdiansyah,S.Si </h6>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card org-card p-4 h-100" style="background: rgba(255, 255, 255, 0.68);">
                         <i class="material-symbols-rounded text-success text-3xl mb-3">person</i>
-                        <h6 class="org-title">RW . DT. Rajo Lenggang</h6>
                         <p class="org-position">Bendahara Umum</p>
+                        <h6 class="org-title">RW . DT. Rajo Lenggang</h6>
+                        <p class="org-position">Wk. Bendahara</p>
+                        <h6 class="org-title">Ir. Alex Sarjadi</h6>
                     </div>
                 </div>
             </div>
@@ -173,7 +182,7 @@
             <div class="org-structure-line my-4"></div>
 
             {{-- Bidang-Bidang --}}
-            <div class="row">
+            <div class="row">                
                 <div class="col-md-3 mb-4">
                     <div class="card org-card p-4 h-100" style="background: rgba(255, 255, 255, 0.68);">
                         <i class="material-symbols-rounded text-success text-3xl mb-3">campaign</i>
