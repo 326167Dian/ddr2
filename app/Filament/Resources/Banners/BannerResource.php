@@ -21,13 +21,15 @@ class BannerResource extends Resource
 {
     protected static ?string $model = Banner::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPhoto;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Setting';
+    protected static string|UnitEnum|null $navigationGroup = 'Konten';
 
     protected static ?int $navigationGroupSort = 1;
 
-    protected static ?string $navigationLabel = 'Banners';
+    protected static ?int $navigationSort = 2;
+
+    protected static ?string $navigationLabel = 'Banner Homepage';
 
     protected static ?string $recordTitleAttribute = 'judul';
 

@@ -9,7 +9,7 @@ use App\Filament\Resources\JurnalKas\Pages\ViewJurnalKas;
 use App\Filament\Resources\JurnalKas\Schemas\JurnalKasForm;
 use App\Filament\Resources\JurnalKas\Schemas\JurnalKasInfolist;
 use App\Filament\Resources\JurnalKas\Tables\JurnalKasTable;
-use App\Models\Jurnalkas;
+use App\Models\JurnalKas;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,12 +17,21 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
+use UnitEnum;
 
 class JurnalKasResource extends Resource
 {
     protected static ?string $model = JurnalKas::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBanknotes;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Keuangan';
+
+    protected static ?int $navigationGroupSort = 4;
+
+    protected static ?int $navigationSort = 1;
+
+    protected static ?string $navigationLabel = 'Jurnal Kas';
 
     protected static ?string $recordTitleAttribute = 'nama';
 

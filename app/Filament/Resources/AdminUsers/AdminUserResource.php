@@ -17,12 +17,21 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Facades\Filament;
+use UnitEnum;
 
 class AdminUserResource extends Resource
 {
     protected static ?string $model = AdminUser::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShieldCheck;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Keanggotaan';
+
+    protected static ?int $navigationGroupSort = 3;
+
+    protected static ?int $navigationSort = 2;
+
+    protected static ?string $navigationLabel = 'Admin Sistem';
 
     protected static ?string $recordTitleAttribute = 'name';
 

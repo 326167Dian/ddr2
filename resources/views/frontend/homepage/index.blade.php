@@ -299,7 +299,7 @@
         <div class="container text-center">
             <h2 class="fw-bold mb-4 section-title-green">Kemitraan</h2>
                 <div class="col-12 p-0">
-                    <img src="{{ asset('assets_frontend/img/bg-landing.jpg') }}" alt="Kemitraan Dewan Dakwah Risalah" class="img-fluid w-100 partnership-image">
+                    <img src="{{ asset('assets_frontend/img/kemitraan.png') }}" alt="Kemitraan Dewan Dakwah Risalah" class="img-fluid w-100 partnership-image">
                 </div>
             <p class="section-text-green mb-5 p-horizontal">Membangun sinergi dengan lembaga pemerintah, yayasan, dan komunitas
                 lokal.</p>

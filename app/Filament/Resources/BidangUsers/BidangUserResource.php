@@ -15,12 +15,21 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class BidangUserResource extends Resource
 {
     protected static ?string $model = BidangUser::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Keanggotaan';
+
+    protected static ?int $navigationGroupSort = 3;
+
+    protected static ?int $navigationSort = 3;
+
+    protected static ?string $navigationLabel = 'Pembagian Bidang';
 
     protected static ?string $recordTitleAttribute = null;
 

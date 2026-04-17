@@ -15,12 +15,21 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class KegiatanResource extends Resource
 {
     protected static ?string $model = Kegiatan::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedMegaphone;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Program & Kegiatan';
+
+    protected static ?int $navigationGroupSort = 2;
+
+    protected static ?int $navigationSort = 3;
+
+    protected static ?string $navigationLabel = 'Kegiatan';
 
     protected static ?string $recordTitleAttribute = 'nama_kegiatan';
 

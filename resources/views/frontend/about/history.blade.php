@@ -55,6 +55,17 @@
             text-align: justify;
         }
     }
+    .page-header h1,
+.page-header h4,
+.page-header p,
+.page-header a {
+    color: #fff !important;
+}
+.history-dark-panel h5,
+.history-dark-panel p,
+.history-dark-panel i {
+    color: #ffffff !important;
+}
 </style>
 @endpush
 

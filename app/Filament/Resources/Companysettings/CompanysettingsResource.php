@@ -15,18 +15,19 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Redirect;
 use UnitEnum;
 
 class CompanysettingsResource extends Resource
 {
     protected static ?string $model = Companysetting::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Setting';
+    protected static string|UnitEnum|null $navigationGroup = 'Pengaturan';
 
-    protected static ?int $navigationGroupSort = 1;
+    protected static ?int $navigationGroupSort = 5;
+
+    protected static ?int $navigationSort = 1;
 
     protected static ?string $navigationLabel = 'Profile Organisasi';
 
