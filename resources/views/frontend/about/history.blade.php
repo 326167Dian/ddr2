@@ -214,15 +214,7 @@
             <p class="mb-5 p-horizontal">Kami menjunjung tinggi nilai-nilai keagamaan, akhlak, dan
                 pelayanan sosial dalam setiap langkah dakwah dan program pemberdayaan masyarakat.</p>
             <div class="row">
-                <div class="col-md-3 mb-4">
-                    <div class="history-value-card p-4 h-100">
-                        <i class="material-symbols-rounded text-gradient text-success text-4xl mb-2">verified</i>
-                        <h6 class="fw-bold">Amanah</h6>
-                        <p class="small p-horizontal">Menjalankan tugas dakwah dan pengelolaan lembaga dengan penuh tanggung
-                            jawab.</p>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
+               <div class="col-md-3 mb-4">
                     <div class="history-value-card p-4 h-100">
                         <i class="material-symbols-rounded text-gradient text-success text-4xl mb-2">verified</i>
                         <h6 class="fw-bold">Shidiq</h6>
@@ -238,6 +230,15 @@
                             perkembangan zaman.</p>
                     </div>
                 </div>
+                <div class="col-md-3 mb-4">
+                    <div class="history-value-card p-4 h-100">
+                        <i class="material-symbols-rounded text-gradient text-success text-4xl mb-2">verified</i>
+                        <h6 class="fw-bold">Amanah</h6>
+                        <p class="small p-horizontal">Menjalankan tugas dakwah dan pengelolaan lembaga dengan penuh tanggung
+                            jawab.</p>
+                    </div>
+                </div>                
+                
                 <div class="col-md-3 mb-4">
                     <div class="history-value-card p-4 h-100">
                         <i class="material-symbols-rounded text-gradient text-success text-4xl mb-2">verified</i>
