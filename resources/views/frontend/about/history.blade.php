@@ -78,7 +78,7 @@
                 @php
                     $historyBanner = filled($banner->foto) && file_exists(public_path('storage/' . ltrim($banner->foto, '/')))
                         ? '/storage/' . ltrim($banner->foto, '/')
-                        : asset('assets_frontend/img/bg5.jpg');
+                        : asset('assets_frontend/img/foto1.jpeg');
                 @endphp
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                     <div class="page-header min-vh-75"
@@ -146,7 +146,7 @@
         </div>
         <div class="container mt-sm-5">
             <div class="page-header py-6 py-md-5 my-sm-3 mb-3 border-radius-xl"
-                style="background-image: url('{{ asset('assets_frontend/img/bg5.jpg') }}');" loading="lazy">
+                style="background-image: url('{{ asset('assets_frontend/img/background.jpg') }}');" loading="lazy">
                 <span class="mask bg-gradient-dark"></span>
                 <div class="container">
                     <div class="row">
