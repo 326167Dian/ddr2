@@ -36,7 +36,7 @@
                 @php
                     $activityBanner = filled($banner->foto) && file_exists(public_path('storage/' . ltrim($banner->foto, '/')))
                         ? '/storage/' . ltrim($banner->foto, '/')
-                        : asset('assets_frontend/img/bg5.jpg');
+                        : asset('assets_frontend/img/seminar1.jpeg');
                 @endphp
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                     <div class="page-header min-vh-75"
@@ -93,9 +93,8 @@
                 <div class="row justify-content-center text-center ms-auto me-auto">
                     <div class="col-lg-10">
                         <h2 class="activity-section-title mb-0">Kegiatan Kami</h2>
-                        <p class="activity-section-text mt-3 p-horizontal">Dewan Da’wah Risalah Islamiyyah aktif menyelenggarakan
-                            berbagai program dakwah, pendidikan, pelatihan kader, dan aksi sosial untuk meningkatkan
-                            kesejahteraan masyarakat Sulit Air.</p>
+                        <p class="activity-section-text mt-3 p-horizontal">Dewan Da’wah Risalah telah menyelenggarakan
+                            PELATIHAN MANAJEMEN MASJID.</p>
                     </div>
                 </div>
             </div>
@@ -106,7 +105,7 @@
                 @php
                     $activityImage = filled($activity->foto) && file_exists(public_path('storage/' . ltrim($activity->foto, '/')))
                         ? '/storage/' . ltrim($activity->foto, '/')
-                        : asset('assets_frontend/img/bg-landing.jpg');
+                        : asset('assets_frontend/img/seminar1.jpeg');
                 @endphp
                 <div class="col-lg-4 ms-auto me-auto p-lg-4 mt-lg-0 mt-4">
                     <div class="rotating-card-container">
